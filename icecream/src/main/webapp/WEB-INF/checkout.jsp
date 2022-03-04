@@ -11,13 +11,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Icecreams</title>
 <!-- for internal CSS -->
+<link rel="stylesheet" href="/css/checkout.css" />
 <link rel="stylesheet" href="/css/style.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
 	href="https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Sacramento&family=Titillium+Web:wght@600&display=swap"
 	rel="stylesheet">
-<link rel="stylesheet" href="/css/checkout.css" />
+<link rel="stylesheet" href="/css/stripeCheckout.css" />
 <script src="https://js.stripe.com/v3/"></script>
 <script src="/js/checkout.js" defer></script>
 </head>
@@ -27,9 +28,22 @@
 		<a href="/" draggable="false">
 			<h1>"Icecream" <span class="titillium">Icecream</span> <span
 				class="sacramento">icecream</span></h1>
-		</a> <a href="/cart" draggable="false"><img
-			src="/img/shopping-cart.png" alt="shopping-cart" class="icon"
-			draggable="false" id="shopping-cart" /></a>
+		</a>
+		
+		<div>
+			<c:choose>
+				<c:when test="${uuid != null }">
+				<p>Hello, <c:out value="${loggedin_name }"></c:out> </p>
+				<a href="/dashboard">Dashboard</a>
+				<a href="/logout">Log Out</a>
+				</c:when>
+				<c:otherwise>
+					<a href="/login">Login / Register</a>
+				</c:otherwise>
+			</c:choose>
+			<a href="/cart" draggable="false"><img src="/img/shopping-cart.png"
+				alt="shopping-cart" class="icon" draggable="false" id="shopping-cart"/></a>
+		</div>
 	</div>
 	<div class="container">
 		<h2 class="title-center">Check Out</h2>

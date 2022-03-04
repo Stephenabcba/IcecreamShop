@@ -11,6 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Icecreams</title>
 <!-- for internal CSS -->
+<link rel="stylesheet" href="/css/newForm.css" />
 <link rel="stylesheet" href="/css/style.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,8 +24,11 @@
 	<div id="nav-bar">
 		<a href="/" draggable="false"><h1>"Icecream" <span class="titillium">Icecream</span> <span
 			class="sacramento">icecream</span></h1> </a>
-		<a href="/cart" draggable="false"><img src="/img/shopping-cart.png"
-			alt="shopping-cart" class="icon" draggable="false" id="shopping-cart"/></a>
+
+			
+			<a href="/cart" draggable="false"><img src="/img/shopping-cart.png"
+				alt="shopping-cart" class="icon" draggable="false" id="shopping-cart"/></a>
+
 	</div>
 	<div class="container">
 		<form:form action="/flavors/new" method="post" modelAttribute="flavor" id="newFlavorForm" enctype="multipart/form-data">

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,8 +10,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Icecreams</title>
 <!-- for internal CSS -->
-<link rel="stylesheet" href="/css/showOne.css" />
 <link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/dashboard.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
@@ -22,9 +21,8 @@
 
 <body>
 	<div id="nav-bar">
-		<a href="/" draggable="false"><h1>"Icecream" <span
-				class="titillium">Icecream</span> <span class="sacramento">icecream</span></h1>
-		</a>
+		<a href="/" draggable="false"><h1>"Icecream" <span class="titillium">Icecream</span> <span
+			class="sacramento">icecream</span></h1> </a>
 		<div>
 			<c:choose>
 				<c:when test="${uuid != null }">
@@ -41,39 +39,25 @@
 		</div>
 	</div>
 	<div class="container">
-		<c:if test="${favoriteSuccess!=null }">		
-		<p class="message border"><c:out value="${favoriteSuccess }"></c:out> </p>
+		<c:if test="${unFavoriteSuccess!=null }">		
+		<p class="message border"><c:out value="${unFavoriteSuccess }"></c:out> </p>
 		</c:if>
-		<div class="grid one-icecream">
-			<div>
-				<div class="icecream-detail">
-					<h2>
-						<c:out value="${flavor.name }" />
-						Icecream
-					</h2>
-					<p>
-						<c:out value="${flavor.description }"></c:out>
-					</p>
-				</div>
-				<c:if test="${uuid != null && !user.favoriteFlavors.contains(flavor)}">				
-				<form action="/icecreams/${flavor.id }/addFavorite" method="POST">
-					<button class="button">Add to Favorite!</button>
-				</form>
-				</c:if>
-				
-				<form:form action="/icecreams/addToCart" method="POST" modelAttribute="order">
-					<h2 class="pink-text">Order Icecream</h2>
-					<h3>Toppings</h3>
-					<form:hidden path="flavor" value="${flavor.id }"/>
-					<form:checkboxes items="${allToppings }" path="toppings" itemLabel="name" element="div"/>
-					<button class="button">Add to Cart</button>
-				</form:form>
-			</div>
-
-			<img src="${flavor.imageUrl }"
-				alt="<c:out value="${flavor.name }"></c:out>-icecream"
-				draggable="false" />
-		</div>
+		<h2>Dashboard</h2>
+		<h3 class="pink-text">Favorite Icecream Flavors:</h3>
+		<table id="favorite-icecreams">
+			<c:forEach var="flavor" items="${user.favoriteFlavors }">
+				<tr>
+					<td class="mint-text">
+						<a href="/icecreams/${flavor.id }"><c:out value="${flavor.name }"></c:out> Icecream </a>
+					</td>
+					<td>
+						<form action="/icecreams/${flavor.id }/removeFavorite" method="post">
+						<button class="text-like-button red-text">Remove From Favorite</button>
+					</form>
+					</td>
+				</tr>
+			</c:forEach>
+		</table>
 	</div>
 
 	<!-- internal script -->

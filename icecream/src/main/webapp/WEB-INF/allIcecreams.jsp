@@ -10,6 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Icecreams</title>
 <!-- for internal CSS -->
+<link rel="stylesheet" href="/css/showAll.css" />
 <link rel="stylesheet" href="/css/style.css" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,10 +23,25 @@
 	<div id="nav-bar">
 		<a href="/" draggable="false"><h1>"Icecream" <span class="titillium">Icecream</span> <span
 			class="sacramento">icecream</span></h1> </a>
-		<a href="/cart" draggable="false"><img src="/img/shopping-cart.png"
-			alt="shopping-cart" class="icon" draggable="false" id="shopping-cart"/></a>
+		<div>
+			<c:choose>
+				<c:when test="${uuid != null }">
+				<p>Hello, <c:out value="${loggedin_name }"></c:out> </p>
+				<a href="/dashboard">Dashboard</a>
+				<a href="/logout">Log Out</a>
+				</c:when>
+				<c:otherwise>
+					<a href="/login">Login / Register</a>
+				</c:otherwise>
+			</c:choose>
+			<a href="/cart" draggable="false"><img src="/img/shopping-cart.png"
+				alt="shopping-cart" class="icon" draggable="false" id="shopping-cart"/></a>
+		</div>
 	</div>
 	<div class="container">
+		<c:if test="${error!=null }">		
+		<p class="alert border"><c:out value="${error }"></c:out> </p>
+		</c:if>
 		<div class="grid all-icecreams-grid">
 			<c:forEach var="flavor" items="${flavors }">
 				<a href="/icecreams/${flavor.id }" draggable="false"><div class="icecream-card">

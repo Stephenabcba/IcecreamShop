@@ -1,0 +1,30 @@
+
+#newFlavorForm input, #newFlavorForm textarea, #newToppingForm input, .form input {
+	display: block;
+	padding: 0.8rem 1rem;
+}
+
+#newFlavorForm textarea {
+	padding: 1rem;
+}
+
+#newFlavorForm input[type="file"] {
+	position:relative;
+	bottom: 41px;
+	left: 8px;
+	z-index: -1;
+}
+
+label.button {
+	font-size: 0.8rem;
+	margin-top: 1rem;
+	display: inline-block;
+	background-color: #5DB7DE;
+}
+
+#newFlavorForm button {
+	margin-top: 0;
+	position:relative;
+	bottom: 30px;
+	
+}

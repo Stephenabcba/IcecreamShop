@@ -39,12 +39,16 @@ public class FlavorService {
     	if (multipartFile.isEmpty()) {
 			result.rejectValue("file","fileError", "Your icecream should have a picture to go with it!");
 		}
-    	String fileName = StringUtils.stripFilenameExtension(StringUtils.cleanPath(multipartFile.getOriginalFilename()));
-    	// line below was used for saving image to local server.
-		// FileUploadUtil.saveFile("./testLocation", fileName, multipartFile);
+    	Optional<Flavor> optionalFlavor = flavorRepo.findByName(flavor.getName());
+    	if (optionalFlavor.isPresent()) {
+    		result.rejectValue("name", "unique name", "Icecream Flavors should have unique names!");
+    	}
     	if (result.hasErrors()) {
     		return null;
     	}
+    	String fileName = StringUtils.stripFilenameExtension(StringUtils.cleanPath(multipartFile.getOriginalFilename()));
+    	// line below was used for saving image to local server.
+		// FileUploadUtil.saveFile("./testLocation", fileName, multipartFile);
     	try {
     		Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
     	    		  "cloud_name", "stephenabcba",

@@ -17,6 +17,12 @@ a {
 	padding: 1rem 2rem;
 }
 
+#nav-bar > div, .side-by-side-items {
+	display: flex;
+	align-items: center;
+	column-gap: 20px;
+}
+
 #nav-bar h1 {
 	font-family: 'Roboto Mono', monospace;
 	font-size: 2.1rem;
@@ -36,7 +42,16 @@ h2 {
 	font-size: 2rem;
 }
 
-input[type="text"],input[type="number"], textarea {
+ul {
+	list-style: none;
+}
+
+li {
+	margin: 0.75rem 0;
+	margin-left: 10px;
+}
+
+input[type="text"],input[type="number"], input[type="password"], textarea {
 	padding: 0.5rem 1rem;
 	margin-top: 0.4rem;
 	margin-bottom: 0.8rem;
@@ -81,6 +96,12 @@ input:focus, textarea:focus {
 	background-color: #E0777D;
 }
 
+.text-like-button {
+	padding:0;
+	border:none;
+	background-color:transparent;
+}
+
 .button:hover, button:hover {
 	cursor: pointer
 }
@@ -120,6 +141,10 @@ input:focus, textarea:focus {
 	color: #E0777D;
 }
 
+.red-text {
+	color: #C6152D;
+}
+
 .alert {
 	padding: 0.5rem 1rem;
 	margin-top: 0.3rem;
@@ -128,190 +153,13 @@ input:focus, textarea:focus {
 	color: #753b42;
 }
 
-
-/* SHOW ALL */
-
-.all-icecreams-grid, .one-icecream {
-	grid-template-columns: 1fr;
+.message {
+	padding: 0.5rem 1rem;
+	margin-top: 0.3rem;
+	margin-bottom: 0.7rem;
+	background-color: #badbd5;
+	color: #2a7669;
 }
-
-.all-icecreams-grid {
-	padding-top: 2rem;
-}
-
-.icecream-card{
-	position: relative;
-}
-
-.icecream-card img {
-	width: 100%;
-	height:225px;
-	border-top-right-radius: 5px;
-	border-top-left-radius: 5px;
-	transition: transform .4s;
-	object-fit: cover;
-}
-
-.icecream-card img:hover, .icecream-card:hover img {
-	transform:scale(1.1);
-	border-radius: 5px;
-}
-
-
-
-.card-body {
-	padding: 15px 20px;
-	text-align:center;
-	font-family: 'Titillium Web', sans-serif;
-	font-size: 1.2rem;
-}
-
- .icecream-card:hover .image-center-text  {
-	display: block;
-}
-
-.image-center-text {
-	position: absolute;
-	top: 70%;
-	left: 50%;
-	transform: translate(-50%,-50%);
-	color: #f1e9dbcb;
-	font-size: 2rem;
-	padding: 0 10px;
-	margin: 0;
-	background-color: #716a5c7c;
-	border-radius: 5px;
-	display: none;
-}
-
-
-
-/* SHOW ONE */
-
-.one-icecream h3 {
-	font-size: 1.7rem;
-}
-
-.one-icecream > img {
-	width: 100%;
-}
-
-.icecream-detail {
-	margin-bottom: 3rem;
-	padding-right: 2rem;
-}
-
-/* SHOPPING CART */
-.order-list {
-	margin-left: 20%;
-	margin-right: 20%;
-	padding: 2rem;
-	font-size: 1.2rem;
-}
-
-
-.order-items {
-	grid-template-columns: 1fr;
-	column-gap:0;
-}
-
-
-.item-pricing {
-	text-align: center;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-}
-
-.price {
-	text-align:end;
-}
-
-.remove-from-cart {
-	color: #C6152D;
-	padding:0;
-	border:none;
-	background-color:transparent;
-}
-
-
-#prices {
-	grid-column: 1;
-	border-bottom: 1px solid rgba(0,0,0,.125);
-	padding-bottom: 20px;
-}
-
-#price-total {
-	border-bottom: none;
-	padding-bottom: 0;
-	grid-column: 1;
-}
-
-
-/* CHECKOUT */
-#checkout {
-	grid-template-columns: 1fr;
-}
-
-#checkout > .border {
-	padding: 3rem;
-}
-
-.add-on-item {
-	font-size: 1rem;
-	padding-left: 0.5rem;
-}
-
-#checkout > div:first-child {
-	display: grid;
-	grid-template-columns: repeat(2,1fr);
-	row-gap: 30px;
-	font-size: 1.3rem;
-}
-
-#cvv {
-	width: 3rem;
-	display: block;
-	text-align:center;
-}
-
-
-
-/* NEW FLAVOR */
-
-
-#newFlavorForm input, #newFlavorForm textarea, #newToppingForm input {
-	display: block;
-	padding: 0.8rem 1rem;
-}
-
-#newFlavorForm textarea {
-	padding: 1rem;
-}
-
-#newFlavorForm input[type="file"] {
-	position:relative;
-	bottom: 41px;
-	left: 8px;
-	z-index: -1;
-}
-
-label.button {
-	font-size: 0.8rem;
-	margin-top: 1rem;
-	display: inline-block;
-	background-color: #5DB7DE;
-}
-
-#newFlavorForm button {
-	margin-top: 0;
-	position:relative;
-	bottom: 30px;
-	
-}
-
-
 
 /* ADAPTIVE SCREEN ACCOMEDATIONS */
 @media only screen and (max-width: 1300px) {
@@ -348,9 +196,9 @@ label.button {
 	}
 	
 	#newFlavorForm, #newToppingForm {
-	padding-right: 20%;
 	padding-left: 20%;
-}
+	padding-right: 20%;
+	}
 	
 	
 }
@@ -384,7 +232,10 @@ label.button {
 		grid-column: 2;
 	}
 	
-	
+	#login-grid {
+		grid-template-columns: 1fr 1fr;
+		column-gap:5rem;
+	}
 }
 
 
