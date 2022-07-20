@@ -129,6 +129,16 @@ input:focus, textarea:focus {
 	justify-content: center;
 }
 
+.mb {
+	margin-bottom: 2rem;
+}
+
+.vertical-center {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
 .mint-text {
 	color: #67AB9F;
 }
