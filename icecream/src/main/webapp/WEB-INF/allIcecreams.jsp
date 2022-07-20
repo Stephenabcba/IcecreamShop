@@ -42,6 +42,9 @@
 		<c:if test="${error!=null }">		
 		<p class="alert border"><c:out value="${error }"></c:out> </p>
 		</c:if>
+		<c:if test="${flashMessage != null }">
+		<p class="message border"><c:out value="${flashMessage }"></c:out> </p>
+		</c:if>
 		<div class="grid all-icecreams-grid">
 			<c:forEach var="flavor" items="${flavors }">
 				<a href="/icecreams/${flavor.id }" draggable="false"><div class="icecream-card">
