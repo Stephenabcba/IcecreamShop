@@ -92,7 +92,7 @@ public class IcecreamController {
 	}
 
 	@PostMapping("/icecreams/addToCart")
-	public String addToCart(HttpSession session, @ModelAttribute("order") Order order) {
+	public String addToCart(HttpSession session, @ModelAttribute("order") Order order, RedirectAttributes redirectAttributes) {
 		Cart cart = (Cart) session.getAttribute("cart");
 		if (cart == null) {
 			cart = new Cart();
@@ -106,6 +106,7 @@ public class IcecreamController {
 		}
 		cart.getOrders().add(order);
 		session.setAttribute("cart", cart);
+		redirectAttributes.addFlashAttribute("flashMessage", "Your order has been added to the shopping cart.");
 		return "redirect:/";
 	}
 
@@ -226,5 +227,21 @@ public class IcecreamController {
 			redirectAttributes.addFlashAttribute("unFavoriteSuccess", flavor.getName() + " Icecream has been removed from your favorites.");
 		}
 		return "redirect:/dashboard";
+	}
+	
+	@GetMapping("/paymentProcess")
+	public String paymentProcess(@RequestParam(value="redirect_status", required=false) String redirectStatus, HttpSession session, RedirectAttributes redirectAttributes) {
+		if (redirectStatus != null && redirectStatus.equals("succeeded")) {
+			session.removeAttribute("cart");
+			return "redirect:/success";
+		} else {
+			redirectAttributes.addFlashAttribute("error", "Something went wrong with the checkout process. Please Try Again.");
+			return "redirect:/";
+		}
+	}
+	
+	@GetMapping("/success")
+	public String success() {
+		return "success.jsp";
 	}
 }
